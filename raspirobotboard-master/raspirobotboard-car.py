@@ -10,7 +10,7 @@ BAUD = 9600
 DRIVE_GO_PIN = 17
 DRIVE_DIR_PIN = 4
 STEER_GO_PIN = 10
-STEER_DIR_PIN = 25   
+STEER_DIR_PIN = 25
 SW1_PIN = 11
 SW2_PIN = 9
 LED1_PIN = 7
@@ -35,7 +35,7 @@ class RaspiRobot:
 
         GPIO.setup(SW1_PIN, GPIO.IN)
         GPIO.setup(SW2_PIN, GPIO.IN)
-        
+
         self.ser = None
 
 
@@ -47,28 +47,54 @@ class RaspiRobot:
         GPIO.output(STEER_DIR_PIN, steer_dir)
 
     def forward(self, seconds=0):
+        self.set_motors(1, 0, 0, 0)
+        if seconds > 0:
+            time.sleep(seconds)
+            self.stop()
+
+    def forwardleft():
+        self, seconds=0):
         self.set_motors(1, 0, 1, 0)
         if seconds > 0:
             time.sleep(seconds)
             self.stop()
 
+    def forwardright():
+    self, seconds=0):
+    self.set_motors(1, 0, 1, 1)
+    if seconds > 0:
+        time.sleep(seconds)
+        self.stop()
+
     def stop(self):
         self.set_motors(0, 0, 0, 0)
- 
+
     def reverse(self, seconds=0):
+        self.set_motors(1, 1, 0, 0)
+        if seconds > 0:
+            time.sleep(seconds)
+            self.stop()
+
+    def reverseleft(self, seconds=0):
+        self.set_motors(1, 1, 1, 0)
+        if seconds > 0:
+            time.sleep(seconds)
+            self.stop()
+
+    def reverseright(self, seconds=0):
         self.set_motors(1, 1, 1, 1)
         if seconds > 0:
             time.sleep(seconds)
             self.stop()
-    
+
     def left(self, seconds=0):
-        self.set_motors(1, 0, 1, 1)
+        self.set_motors(0, 0, 1, 0)
         if seconds > 0:
             time.sleep(seconds)
             self.stop()
 
     def right(self, seconds=0):
-        self.set_motors(1, 1, 1, 0)
+        self.set_motors(0, 1, 1, 1)
         if seconds > 0:
             time.sleep(seconds)
             self.stop()
@@ -89,7 +115,7 @@ class RaspiRobot:
         GPIO.output(OC1_PIN, state)
 
     def set_oc2(self, state):
-        GPIO.output(OC2_PIN, state)    
+        GPIO.output(OC2_PIN, state)
 
     def get_range_inch_raw(self):
         msg = 'R000'
@@ -114,7 +140,7 @@ class RaspiRobot:
 
     def get_range_cm(self):
         return int(self.get_range_inch() * 2.5)
-        
+
     def test(self):
         raw_input("forward")
         self.forward(2)
