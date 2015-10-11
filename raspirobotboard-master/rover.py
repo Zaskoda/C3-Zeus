@@ -1,4 +1,4 @@
-from raspirobotboard-car import *
+from raspirobotboardcar import *
 import pygame
 from pygame.locals import *
 
@@ -15,17 +15,17 @@ pygame.mouse.set_visible(0)
 while True:
     for event in pygame.event.get():
         if event.type == KEYDOWN:
-            if event.key == K_Q:
+            if event.key == K_q:
                 rr.forwardleft()
-            elif event.key == K_W:
+            elif event.key == K_w:
                 rr.forward()
-            elif event.key == K_E:
+            elif event.key == K_e:
                 rr.forwardright()
-            elif event.key == K_A:
+            elif event.key == K_a:
                 rr.reverseleft()
-            elif event.key == K_S:
+            elif event.key == K_s:
                 rr.reverse()
-            elif event.key == K_D:
+            elif event.key == K_d:
                 rr.reverseright()
             elif event.key == K_SPACE:
                 rr.stop()

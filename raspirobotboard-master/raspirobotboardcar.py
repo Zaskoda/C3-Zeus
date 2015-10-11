@@ -1,4 +1,4 @@
-#raspirobotboard.py Library
+#raspirobotboardcar.py Library
 
 import RPi.GPIO as GPIO
 import serial
@@ -7,10 +7,10 @@ import time
 DEVICE = '/dev/ttyAMA0'
 BAUD = 9600
 
-DRIVE_GO_PIN = 17
-DRIVE_DIR_PIN = 4
-STEER_GO_PIN = 10
-STEER_DIR_PIN = 25
+STEER_GO_PIN = 17
+STEER_DIR_PIN = 4
+DRIVE_GO_PIN = 10
+DRIVE_DIR_PIN = 25
 SW1_PIN = 11
 SW2_PIN = 9
 LED1_PIN = 7
@@ -47,42 +47,40 @@ class RaspiRobot:
         GPIO.output(STEER_DIR_PIN, steer_dir)
 
     def forward(self, seconds=0):
-        self.set_motors(1, 0, 0, 0)
-        if seconds > 0:
-            time.sleep(seconds)
-            self.stop()
-
-    def forwardleft():
-        self, seconds=0):
-        self.set_motors(1, 0, 1, 0)
-        if seconds > 0:
-            time.sleep(seconds)
-            self.stop()
-
-    def forwardright():
-    self, seconds=0):
-    self.set_motors(1, 0, 1, 1)
-    if seconds > 0:
-        time.sleep(seconds)
-        self.stop()
-
-    def stop(self):
-        self.set_motors(0, 0, 0, 0)
-
-    def reverse(self, seconds=0):
         self.set_motors(1, 1, 0, 0)
         if seconds > 0:
             time.sleep(seconds)
             self.stop()
 
-    def reverseleft(self, seconds=0):
+    def forwardleft(self, seconds=0):
+        self.set_motors(1, 1, 1, 1)
+        if seconds > 0:
+            time.sleep(seconds)
+            self.stop()
+
+    def forwardright(self, seconds=0):
         self.set_motors(1, 1, 1, 0)
         if seconds > 0:
             time.sleep(seconds)
             self.stop()
 
+    def stop(self):
+        self.set_motors(0, 0, 0, 0)
+
+    def reverse(self, seconds=0):
+        self.set_motors(1, 0, 0, 0)
+        if seconds > 0:
+            time.sleep(seconds)
+            self.stop()
+
+    def reverseleft(self, seconds=0):
+        self.set_motors(1, 0, 1, 1)
+        if seconds > 0:
+            time.sleep(seconds)
+            self.stop()
+
     def reverseright(self, seconds=0):
-        self.set_motors(1, 1, 1, 1)
+        self.set_motors(1, 0, 1, 0)
         if seconds > 0:
             time.sleep(seconds)
             self.stop()
