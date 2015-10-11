@@ -17,7 +17,6 @@ font = pygame.font.SysFont("arial", 64)
 
 pygame.display.set_caption('RaspiRobot')
 pygame.mouse.set_visible(0)
-camra.stop_preview()
 
 while True:
     for event in pygame.event.get():
@@ -36,3 +35,9 @@ while True:
                 rr.reverseright()
             elif event.key == K_SPACE:
                 rr.stop()
+            elif event.key == K_ESCAPE:
+                exit
+
+camera.stop_preview()
+
+
