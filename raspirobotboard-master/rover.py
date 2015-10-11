@@ -1,8 +1,15 @@
+import picamera
 from raspirobotboardcar import *
 import pygame
 from pygame.locals import *
 
+camera = picamera.PiCamera()
+camera.hflip = True
+camera.vflip = True
+camera.start_preview()
+
 rr = RaspiRobot()
+
 
 pygame.init()
 screen = pygame.display.set_mode((640, 480))
@@ -10,7 +17,7 @@ font = pygame.font.SysFont("arial", 64)
 
 pygame.display.set_caption('RaspiRobot')
 pygame.mouse.set_visible(0)
-
+camra.stop_preview()
 
 while True:
     for event in pygame.event.get():
