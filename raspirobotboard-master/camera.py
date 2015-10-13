@@ -14,7 +14,7 @@ with picamera.PiCamera() as camera:
     connection = server_socket.accept()[0].makefile('wb')
     try:
         camera.start_recording(connection, format='h264')
-        camera.wait_recording(60)
+        camera.wait_recording(600)
         camera.stop_recording()
     finally:
         connection.close()
